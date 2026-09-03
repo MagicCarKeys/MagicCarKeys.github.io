@@ -1,0 +1,16 @@
+MAGIC CAR KEYS — WEB3FORMS SETUP
+
+The website has been changed from FormSubmit to Web3Forms.
+
+1. Visit https://web3forms.com
+2. Create a free Access Key for: haidarjabbar007@gmail.com
+3. Web3Forms will email the key to you.
+4. Open index.html.
+5. Search for: aee97142-5122-4712-bc5d-a2706543c5cb
+6. Replace that text with your Web3Forms Access Key.
+7. Save and upload the website to GitHub Pages.
+
+The website phone number remains: 289 800 5101
+
+
+Web3Forms access key has been installed in index.html. The contact form is configured for live submission.
