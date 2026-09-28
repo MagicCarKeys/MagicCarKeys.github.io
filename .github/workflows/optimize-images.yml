@@ -1,0 +1,76 @@
+name: Optimize website images
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  optimize-images:
+    if: ${{ !contains(github.event.head_commit.message, '[image-opt]') }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out website
+        uses: actions/checkout@v4
+
+      - name: Install WebP tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y webp
+
+      - name: Create optimized WebP images
+        run: |
+          cwebp -quiet -q 82 homepage-hero.png -o homepage-hero.webp
+          cwebp -quiet -q 88 magic-car-keys-logo-new-2026.png -o magic-car-keys-logo-new-2026.webp
+          cwebp -quiet -q 82 service-key-programming.png -o service-key-programming.webp
+          cwebp -quiet -q 82 service-remote-starter.png -o service-remote-starter.webp
+          cwebp -quiet -q 82 module-board-repair.jpg -o module-board-repair.webp
+          cwebp -quiet -q 82 key-fob-service.jpg -o key-fob-service.webp
+
+      - name: Switch visible images to optimized copies
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          replacements = {
+              'src="homepage-hero.png"': 'src="homepage-hero.webp"',
+              'src="magic-car-keys-logo-new-2026.png?v=20260902"': 'src="magic-car-keys-logo-new-2026.webp?v=20260927"',
+              'src="/magic-car-keys-logo-new-2026.png?v=20260902"': 'src="/magic-car-keys-logo-new-2026.webp?v=20260927"',
+              'src="module-board-repair.jpg"': 'src="module-board-repair.webp"',
+              'src="/module-board-repair.jpg"': 'src="/module-board-repair.webp"',
+              'src="key-fob-service.jpg"': 'src="key-fob-service.webp"',
+              'src="/key-fob-service.jpg"': 'src="/key-fob-service.webp"',
+              'src="/service-key-programming.png"': 'src="/service-key-programming.webp"',
+              'src="/service-remote-starter.png"': 'src="/service-remote-starter.webp"',
+          }
+          for path in Path('.').rglob('*.html'):
+              text = path.read_text(encoding='utf-8')
+              new = text
+              for old, replacement in replacements.items():
+                  new = new.replace(old, replacement)
+              if new != text:
+                  path.write_text(new, encoding='utf-8')
+          PY
+
+      - name: Report size savings
+        run: |
+          echo "Optimized image sizes:"
+          ls -lh homepage-hero.png homepage-hero.webp \
+                 magic-car-keys-logo-new-2026.png magic-car-keys-logo-new-2026.webp \
+                 service-key-programming.png service-key-programming.webp \
+                 service-remote-starter.png service-remote-starter.webp \
+                 module-board-repair.jpg module-board-repair.webp \
+                 key-fob-service.jpg key-fob-service.webp
+
+      - name: Commit optimized images
+        run: |
+          git config user.name "Magic Car Keys Image Optimizer"
+          git config user.email "actions@users.noreply.github.com"
+          git add '*.webp' '*.html'
+          if git diff --cached --quiet; then
+            echo "No optimization changes to commit."
+          else
+            git commit -m "[image-opt] Add lighter WebP website images"
+            git push
+          fi
