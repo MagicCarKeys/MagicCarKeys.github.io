@@ -382,3 +382,166 @@
   .faq-section{padding:50px 0}
   .faq-grid{grid-template-columns:1fr}
 }
+
+
+/* === QUICK HELP WHATSAPP DRAWER === */
+.quick-help-launcher{
+  position:fixed;
+  left:24px;
+  bottom:24px;
+  z-index:998;
+  display:inline-flex;
+  align-items:center;
+  gap:9px;
+  border:2px solid #fff;
+  border-radius:999px;
+  padding:12px 17px;
+  background:linear-gradient(135deg,var(--gold2),var(--gold));
+  color:#07111f;
+  box-shadow:0 12px 30px rgba(0,0,0,.27);
+  font:inherit;
+  font-size:14px;
+  font-weight:950;
+  cursor:pointer;
+  transition:transform .18s ease,box-shadow .18s ease;
+}
+.quick-help-launcher:hover{transform:translateY(-2px);box-shadow:0 16px 34px rgba(0,0,0,.33)}
+.quick-help-launcher:focus-visible{outline:3px solid #07111f;outline-offset:3px}
+.quick-help-icon{font-size:19px;line-height:1}
+
+.quick-help-backdrop{
+  position:fixed;
+  inset:0;
+  z-index:1000;
+  background:rgba(2,8,14,.48);
+  opacity:0;
+  transition:opacity .22s ease;
+}
+.quick-help-backdrop.open{opacity:1}
+
+.quick-help-panel{
+  position:fixed;
+  left:24px;
+  bottom:24px;
+  z-index:1001;
+  width:min(420px,calc(100vw - 48px));
+  max-height:min(720px,calc(100vh - 48px));
+  overflow:auto;
+  background:#fff;
+  border:1px solid #dfe5ec;
+  border-radius:18px;
+  box-shadow:0 24px 70px rgba(0,0,0,.34);
+  transform:translateY(26px) scale(.98);
+  opacity:0;
+  transition:transform .22s ease,opacity .22s ease;
+}
+.quick-help-panel.open{transform:translateY(0) scale(1);opacity:1}
+
+.quick-help-head{
+  display:flex;
+  justify-content:space-between;
+  gap:20px;
+  padding:22px 22px 18px;
+  background:linear-gradient(135deg,#06111f,#12335d);
+  color:#fff;
+  border-radius:17px 17px 0 0;
+}
+.quick-help-head small{
+  display:block;
+  color:var(--gold);
+  font-size:10px;
+  font-weight:950;
+  letter-spacing:.12em;
+  margin-bottom:5px;
+}
+.quick-help-head h2{font-size:26px;line-height:1.05;margin:0 0 7px}
+.quick-help-head p{margin:0;color:#cbd6e5;font-size:12px;line-height:1.45}
+.quick-help-close{
+  flex:0 0 auto;
+  width:36px;
+  height:36px;
+  border:1px solid rgba(255,255,255,.28);
+  border-radius:50%;
+  background:rgba(255,255,255,.08);
+  color:#fff;
+  font-size:25px;
+  line-height:1;
+  cursor:pointer;
+}
+
+.quick-help-form{display:grid;gap:13px;padding:20px 22px 22px}
+.quick-help-form label{display:grid;gap:6px}
+.quick-help-form label>span{
+  font-size:11px;
+  font-weight:900;
+  text-transform:uppercase;
+  letter-spacing:.045em;
+  color:#435168;
+}
+.quick-help-form input,.quick-help-form select{
+  width:100%;
+  border:1px solid #cfd7e1;
+  border-radius:9px;
+  padding:12px 13px;
+  background:#fff;
+  color:#142032;
+  font:inherit;
+  font-size:15px;
+  outline:none;
+}
+.quick-help-form input:focus,.quick-help-form select:focus{
+  border-color:#9f7900;
+  box-shadow:0 0 0 3px rgba(255,196,0,.18);
+}
+.quick-help-two{display:grid;grid-template-columns:.7fr 1.3fr;gap:11px}
+.quick-field-note{font-size:10px;color:#788597;line-height:1.4}
+.quick-help-submit{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  border:0;
+  border-radius:10px;
+  padding:13px 16px;
+  background:#25D366;
+  color:#fff;
+  font:inherit;
+  font-weight:950;
+  cursor:pointer;
+  margin-top:2px;
+}
+.quick-help-submit:hover{background:#20bd5a}
+.quick-help-privacy{text-align:center;margin:0;color:#7a8798;font-size:10px}
+body.quick-help-open{overflow:hidden}
+
+@media(max-width:760px){
+  .quick-help-launcher{
+    left:14px;
+    bottom:14px;
+    padding:0;
+    width:58px;
+    height:58px;
+    justify-content:center;
+  }
+  .quick-help-launcher>span:last-child{display:none}
+  .quick-help-icon{font-size:23px}
+  .quick-help-panel{
+    left:0;
+    right:0;
+    bottom:0;
+    width:100%;
+    max-height:88vh;
+    border-radius:20px 20px 0 0;
+    transform:translateY(100%);
+  }
+  .quick-help-panel.open{transform:translateY(0)}
+  .quick-help-head{border-radius:19px 19px 0 0;padding:20px 18px 16px}
+  .quick-help-form{padding:18px}
+  .quick-help-two{grid-template-columns:.75fr 1.25fr}
+}
+
+/* Keep the two floating customer-contact controls from overlapping small screens */
+@media(max-width:420px){
+  .quick-help-launcher{left:12px;bottom:12px}
+  .whatsapp-float{right:12px;bottom:12px}
+}
