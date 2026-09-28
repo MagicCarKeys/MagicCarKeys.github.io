@@ -322,3 +322,63 @@
 .service-area-cta{padding:55px 0;text-align:center;background:#f2f4f7}.service-area-cta p{max-width:850px;margin:0 auto 22px;color:#637083;line-height:1.65}
 @media(max-width:980px){.service-page-hero-grid,.service-content-grid{grid-template-columns:1fr}.service-page-image{height:360px}.service-side-card{position:static}.service-cred-grid{grid-template-columns:1fr 1fr}}
 @media(max-width:760px){.service-page-hero{padding:34px 0}.service-page-copy h1{font-size:38px}.service-page-lead{font-size:16px}.service-page-image{height:260px}.service-content-section,.service-related-section{padding:50px 0}.service-check-list,.service-process-grid,.service-related-grid,.service-cred-grid{grid-template-columns:1fr}.service-process-section{padding:52px 0}}
+
+
+/* === MOBILE HERO FULL IMAGE FIX === */
+@media(max-width:760px){
+  .hero{
+    display:flex;
+    flex-direction:column;
+    height:auto!important;
+    min-height:0!important;
+    background:#07111f;
+  }
+  .hero-image{
+    position:relative;
+    width:100%;
+    height:auto!important;
+    aspect-ratio:1648/928;
+    object-fit:contain!important;
+    object-position:center center!important;
+    background:#07111f;
+  }
+  .hero-shade-soft{display:none}
+  .hero-content-clean{
+    position:static!important;
+    inset:auto!important;
+    width:100%;
+    padding:10px 12px 14px!important;
+    align-items:stretch!important;
+    background:#07111f;
+  }
+  .hero-actions-clean{
+    width:100%;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:8px;
+  }
+  .hero-actions-clean .btn{
+    width:100%;
+    padding:11px 8px!important;
+    font-size:12px!important;
+    white-space:nowrap;
+  }
+}
+
+/* === ALL KEYS LOST FAQ === */
+.faq-section{padding:70px 0;background:#f4f6f9}
+.faq-wrap>h2{font-size:clamp(30px,3vw,44px);line-height:1.08;letter-spacing:-.035em;color:#07111f;margin:0 0 24px}
+.faq-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.faq-grid details{background:#fff;border:1px solid #dde4eb;border-radius:12px;padding:0 18px;box-shadow:0 6px 18px rgba(6,17,31,.04)}
+.faq-grid summary{cursor:pointer;font-weight:900;color:#142032;padding:18px 28px 18px 0;position:relative;list-style:none}
+.faq-grid summary::-webkit-details-marker{display:none}
+.faq-grid summary:after{content:"+";position:absolute;right:0;top:14px;font-size:24px;color:#9a6c00}
+.faq-grid details[open] summary:after{content:"−"}
+.faq-grid details p{margin:0;padding:0 0 18px;color:#637083;font-size:14px;line-height:1.65}
+.urgent-card{border:2px solid var(--gold)}
+.urgent-label{display:inline-block!important;background:var(--gold);color:#07111f!important;font-size:11px!important;font-weight:950!important;letter-spacing:.08em;padding:6px 9px;border-radius:999px;margin:0 0 12px!important}
+.service-area-actions{justify-content:center}
+@media(max-width:760px){
+  .faq-section{padding:50px 0}
+  .faq-grid{grid-template-columns:1fr}
+}
