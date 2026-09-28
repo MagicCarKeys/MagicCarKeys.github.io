@@ -220,3 +220,66 @@
   .whatsapp-float span{display:none}
   .whatsapp-float svg{width:32px;height:32px}
 }
+
+
+/* === SEO HOMEPAGE INTRO === */
+.seo-intro{
+  background:#fff;
+  border-bottom:1px solid #e3e8ee;
+  padding:34px 0 30px;
+}
+.seo-intro-inner{
+  display:grid;
+  grid-template-columns:minmax(0,1.65fr) minmax(280px,.85fr);
+  gap:42px;
+  align-items:center;
+}
+.seo-intro .kicker{margin-bottom:8px}
+.seo-intro h1{
+  margin:0 0 12px;
+  max-width:900px;
+  color:#07111f;
+  font-size:clamp(30px,3.4vw,48px);
+  line-height:1.04;
+  letter-spacing:-.035em;
+}
+.seo-intro p:last-child{
+  max-width:960px;
+  margin:0;
+  color:#5d6b7e;
+  font-size:16px;
+  line-height:1.65;
+}
+.seo-service-links{
+  display:flex;
+  flex-wrap:wrap;
+  gap:9px;
+  justify-content:flex-end;
+}
+.seo-service-links a{
+  display:inline-flex;
+  align-items:center;
+  padding:10px 13px;
+  border:1px solid #d7dee7;
+  border-radius:999px;
+  background:#f6f8fa;
+  color:#142032;
+  font-size:12px;
+  font-weight:900;
+}
+.seo-service-links a:hover{
+  background:#07111f;
+  color:#fff;
+  border-color:#07111f;
+}
+.service-cards article[id]{scroll-margin-top:90px}
+@media(max-width:900px){
+  .seo-intro-inner{grid-template-columns:1fr;gap:20px}
+  .seo-service-links{justify-content:flex-start}
+}
+@media(max-width:760px){
+  .seo-intro{padding:27px 0 24px}
+  .seo-intro h1{font-size:31px}
+  .seo-intro p:last-child{font-size:14px}
+  .seo-service-links a{font-size:11px;padding:9px 11px}
+}
